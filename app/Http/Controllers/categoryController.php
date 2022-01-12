@@ -80,7 +80,7 @@ class categoryController extends Controller
     {
         $category=Category::find($id);
         // dd($category->category_name);
-        return view('');
+        return view('Categories.edit',compact('category'));
     }
 
     /**
@@ -92,7 +92,12 @@ class categoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->file('image'))
+        {
+            Storage::delete($image);
+            $image=$request->file('image')->store('public/files'));
+        }
+        return redirect()->Route('admin.category.index');
     }
 
     /**

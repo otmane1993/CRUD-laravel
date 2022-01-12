@@ -38,6 +38,7 @@ Route::prefix('admin')->middleware('admin')->group(function(){
         Route::get('show/{id}',[categoryController::class,'show'])->name('admin.category.show');
         Route::get('edit/{id}',[categoryController::class,'edit'])->name('admin.category.edit');
         Route::delete('delete/{id}',[categoryController::class,'destroy'])->name('admin.category.delete');
+        Route::put('update/{id}',[categoryController::class,'update'])->name('admin.category.update');
     });
     // Route::get('/dashboard','DashController@index')->name('dash');
 });
