@@ -42,7 +42,13 @@
                     <td>
                         <a class="btn btn-success" href="{{ route('admin.category.edit',$category->id) }}">Edit</a>
                         <a class="btn btn-warning" href="{{ route('admin.category.show',$category->id) }}">Show</a>
-                        <a class="btn btn-danger" href="{{ route('admin.category.delete',$category->id) }}">Delete</a>
+                        
+                        <form method="POST" action="{{ route('admin.category.delete',$category->id) }}">
+                         @method('DELETE')
+                         @csrf
+                        <input type="submit"  value="Delete" class="btn btn-danger delete" />
+                        </form>
+                        
                     </td>
                 </tr>
             @endforeach
@@ -53,4 +59,20 @@
         @endif
     </div>
 </div>
+
+<script type="text/javascript">
+
+const deleting = document.querySelectorAll('.delete');
+
+
+deleting.forEach(element => {
+
+    element.addEventListener('click',e=> {
+
+   
+          if(!confirm('est ce que tu veux supprimer la categorie'))
+          e.preventDefault();
+    })
+})
+</script>
 @endsection

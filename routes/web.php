@@ -37,7 +37,7 @@ Route::prefix('admin')->middleware('admin')->group(function(){
         Route::post('store',[categoryController::class,'store'])->name('admin.category.store');
         Route::get('show/{id}',[categoryController::class,'show'])->name('admin.category.show');
         Route::get('edit/{id}',[categoryController::class,'edit'])->name('admin.category.edit');
-        Route::get('delete/{id}',[categoryController::class,'destroy'])->name('admin.category.delete');
+        Route::delete('delete/{id}',[categoryController::class,'destroy'])->name('admin.category.delete');
     });
     // Route::get('/dashboard','DashController@index')->name('dash');
 });

@@ -34,6 +34,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/script.js') }}" defer></script>
 </head>
 <body>
     <div id="app">
@@ -94,5 +95,6 @@
     </div>
     
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+   
 </body>
 </html>
