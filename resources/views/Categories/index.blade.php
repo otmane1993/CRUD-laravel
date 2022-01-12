@@ -38,11 +38,11 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->category_name }}</td>
                     <td>{{ $category->description }}</td>
-                    <td><img src="{{ $category->category_image }}"></td>
+                    <td><img width="60" height="60" src="{{ Storage::url($category->category_image) }}"></td>
                     <td>
-                        <a class="btn btn-success" href="">Update</a>
-                        <a class="btn btn-warning" href="">Show</a>
-                        <a class="btn btn-danger" href="">Delete</a>
+                        <a class="btn btn-success" href="{{ route('admin.category.edit',$category->id) }}">Edit</a>
+                        <a class="btn btn-warning" href="{{ route('admin.category.show',$category->id) }}">Show</a>
+                        <a class="btn btn-danger" href="{{ route('admin.category.delete',$category->id) }}">Delete</a>
                     </td>
                 </tr>
             @endforeach

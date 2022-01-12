@@ -46,7 +46,7 @@ class categoryController extends Controller
         Category::create([
             'category_name'=>$request->category_name,
             'description'=>$request->description,
-            'category_image'=>$request->category_image,
+            'category_image'=>$path,
             'slug'=>Str::slug($request->category_name),
         ]);
         Session::put('message','category created successfully');
@@ -61,7 +61,13 @@ class categoryController extends Controller
      */
     public function show($id)
     {
-        //
+        // dd($id);
+        $category=Category::find($id);
+        // $category->products;
+        // dd($category->description);
+        $products=$category->products;
+        // dd($products[1]->product_name);
+        return view('Categories.show',compact('category','products'));
     }
 
     /**
@@ -72,7 +78,9 @@ class categoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category=Category::find($id);
+        // dd($category->category_name);
+        return view('');
     }
 
     /**
@@ -95,6 +103,7 @@ class categoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category=Category::find($id)->delete();
+        return redirect()->route('admin.category.index');
     }
 }
