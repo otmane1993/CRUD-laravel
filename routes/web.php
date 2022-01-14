@@ -27,5 +27,6 @@ Route::prefix('home')->group(function(){
         Route::get('create',[AnimalController::class,'create'])->name('home.animal.create');
         Route::post('store',[AnimalController::class,'store'])->name('home.animal.store');
         Route::delete('delete/{id}',[AnimalController::class,'destroy'])->name('home.animal.delete');
+        Route::get('show/{id}',[AnimalController::class,'show'])->name('home.animal.show');
     });
 });

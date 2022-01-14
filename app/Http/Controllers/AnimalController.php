@@ -65,7 +65,8 @@ class AnimalController extends Controller
      */
     public function show($id)
     {
-        //
+        $animal=Animal::find($id);
+        return view('Animal.show',compact('animal'));
     }
 
     /**
@@ -99,6 +100,7 @@ class AnimalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $animal=Animal::find($id)->delete();
+        return redirect()->route('home.animal.index');
     }
 }

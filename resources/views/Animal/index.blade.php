@@ -25,11 +25,23 @@
                     </td>
                     <td>
                         <a href="" class="btn btn-warning">Edit</a>
-                        <a href="" class="btn btn-success">Show</a>
-                        <!-- <a href="{{ route('home.animal.delete') }}" class="btn btn-danger">Delete</a> -->
-                        <form method="POST" action="{{ route('home.animal.delete',$animal->id) }}">
-                            <input type="submit" class="btn btn-danger" value="DELETE">
+                        <a href="{{ route('home.animal.show',$animal->id) }}" class="btn btn-success">Show</a>
+                         
+
+                        <form method="POST" action="{{ route('home.animal.delete',$animal->id)}}" id="form">
+                          @csrf
+                          @method('DELETE')
+
+                          <input type="submit" class="btn btn-danger" value="delete" class="delete" />
+
                         </form>
+
+                        
+                        <!-- <form method="POST" action="{{ route('home.animal.delete',[$animal->id,$animal->name]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" class="btn btn-danger" value="DELETE">
+                        </form> -->
                     </td>
                 </tr>
                 @endforeach
@@ -37,4 +49,17 @@
         </table>
     </div>
 </div>
+<script>
+    let input=document.querySelectorAll('.delete');
+    input.forEach(element=>{
+        element.addEventListener('click',function(e){
+        let res=confirm('Do you really want to delete this animal?');
+        if(!res)
+        {
+            e.preventDefault();
+        }
+        });
+    });
+    
+</script>
 @endsection
