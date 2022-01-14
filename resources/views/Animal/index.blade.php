@@ -24,7 +24,7 @@
                         <img width="60" height="60" src="{{ Storage::url($animal->image) }}" alt="">
                     </td>
                     <td>
-                        <a href="" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('home.animal.edit',$animal->id) }}" class="btn btn-warning">Edit</a>
                         <a href="{{ route('home.animal.show',$animal->id) }}" class="btn btn-success">Show</a>
                          
 
@@ -48,6 +48,9 @@
             </tbody>
         </table>
     </div>
+    @if(Session::has('message'))
+    <p>{{Session::get('message')}}</p>
+    @endif
 </div>
 <script>
     let input=document.querySelectorAll('.delete');

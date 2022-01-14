@@ -54,7 +54,7 @@ class AnimalController extends Controller
             'family_id'=>$request->family,
         ]);
         Session::put('message','Animal created successfully');
-        return redirect()->route('home.animal.index');
+        return redirect()->route('home.animal.index')->with('message','Animal created successfully');
     }
 
     /**
@@ -66,7 +66,9 @@ class AnimalController extends Controller
     public function show($id)
     {
         $animal=Animal::find($id);
-        return view('Animal.show',compact('animal'));
+        $family=Family::find($animal->family_id);
+        // dd($family->libelle);
+        return view('Animal.show',compact('animal','family'));
     }
 
     /**
@@ -77,7 +79,12 @@ class AnimalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $animal=Animal::find($id);
+        $famili=Family::find($animal->family_id);
+        // dd($famili->libelle);
+        $families=Family::all();
+        $continents=Continent::all();
+        return view('Animal.edit',compact('animal','families','continents'));
     }
 
     /**
