@@ -46,7 +46,7 @@
                             @csrf
                             @method('DELETE')
 
-                            <input type="submit" class="btn btn-danger" value="delete" class="delete" />
+                            <input type="submit" class="btn btn-danger delete" value="delete"/>
 
                             </form>
 
@@ -65,18 +65,26 @@
     @if(Session::has('message'))
     <p>{{Session::get('message')}}</p>
     @endif
+    @if(Session::has('update'))
+    <p>{{Session::get('update')}}</p>
+    @endif
 </div></div>
 <script>
+    // alert('hello');
     let input=document.querySelectorAll('.delete');
+    // console.log(input);
     input.forEach(element=>{
+        // console.log(element);
         element.addEventListener('click',function(e){
         let res=confirm('Do you really want to delete this animal?');
         if(!res)
         {
             e.preventDefault();
         }
-        });
+        // });
+        // e.preventDefault();
+        // console.log('hello');
     });
-    
+});
 </script>
 @endsection

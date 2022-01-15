@@ -110,6 +110,7 @@ class AnimalController extends Controller
         $animal->image=$image;
         $animal->family_id=$request->family;
         $animal->save();
+        Session::put('update','Animal updated successfully');
         return redirect()->route('home.animal.index');
     }
 
