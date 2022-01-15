@@ -7,6 +7,7 @@ use App\Animal;
 use App\Family;
 use App\Continent;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class AnimalController extends Controller
 {
@@ -84,7 +85,7 @@ class AnimalController extends Controller
         // dd($famili->libelle);
         $families=Family::all();
         $continents=Continent::all();
-        return view('Animal.edit',compact('animal','families','continents'));
+        return view('Animal.edit',compact('animal','families','continents','famili'));
     }
 
     /**
@@ -96,7 +97,20 @@ class AnimalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $animal=Animal::find($id);
+        $image=$animal->image;
+        // dd($image);
+        if($request->file('image'))
+        {
+            Storage::delete($image);
+            $image=$request->file('image')->store('public/files');
+        }
+        $animal->name=$request->name;
+        $animal->description=$request->description;
+        $animal->image=$image;
+        $animal->family_id=$request->family;
+        $animal->save();
+        return redirect()->route('home.animal.index');
     }
 
     /**

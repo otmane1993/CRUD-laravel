@@ -74,20 +74,6 @@
         </nav>
 
         <main class="py-4">
-            <div class="dashboard d-flex justify-content-around">
-                <nav class="nav-dashboard">
-                    <ul>
-                        <li>
-                            <a href="{{ route('home.animal.index') }}">Animals:</a>
-                        </li>
-                        <li>
-                            <a href="">Continents:</a>
-                        </li>
-                        <li>
-                            <a href="">Families:</a>
-                        </li>
-                    </ul>
-                </nav>
                 @yield('content')
             </div>
         </main>
