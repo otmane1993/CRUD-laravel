@@ -29,6 +29,12 @@
                         <p>{{$family->libelle}}</p>
                     </div>
                     <div>
+                        <h3>Continents de l'animal:</h3>
+                        @foreach($continents as $continent)
+                        <p>{{$continent}}</p>
+                        @endforeach
+                    </div>
+                    <div>
                         <img width="200" height="200" src="{{ Storage::url($animal->image) }}">
                     </div>
                     <div>

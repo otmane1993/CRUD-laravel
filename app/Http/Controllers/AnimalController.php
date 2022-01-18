@@ -8,6 +8,7 @@ use App\Family;
 use App\Continent;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class AnimalController extends Controller
 {
@@ -18,7 +19,7 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        $animals=Animal::all();
+        $animals=Animal::all()->paginate(5);
         return view('Animal.index',compact('animals'));
     }
 
@@ -42,18 +43,95 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
+        // if($request->Afrique==="on")
+        // {
+        //     dd("hello");
+        // }
         $this->validate($request,
         ['name'=>'required|string',
          'description'=>'required|string'
         ]
         );
         $path=$request->file('image')->store('public/files');
-        Animal::create([
+        $animal=Animal::create([
             'name'=>$request->name,
             'description'=>$request->description,
             'image'=>$path,
             'family_id'=>$request->family,
         ]);
+        $continents=Continent::all();
+        foreach($continents as $continent)
+        {
+            // dd($request->$continent->name);
+            // dd($request->Afrique);
+            // if($request->$continent->name=="on")
+            // {
+            //     $insert=[
+            //         'animal_id'=>$animal->id,
+            //         'continent_id'=>$request->$continent->id,
+            //     ];
+            //     DB::table('animals_of_continents')->insert($insert);
+            // }
+            switch($continent->name)
+            {
+                case("Afrique"):
+                    if($request->Afrique=="on")
+                    {
+
+                        $insert=[
+                            'animal_id'=>$animal->id,
+                            'continent_id'=>$continent->id,
+                        ];
+                        DB::table('animals_of_continents')->insert($insert);
+                    }
+                break;
+                case("Asie"):
+                    if($request->Asie=="on")
+                    {
+
+                        $insert=[
+                            'animal_id'=>$animal->id,
+                            'continent_id'=>$continent->id,
+                        ];
+                        DB::table('animals_of_continents')->insert($insert);
+                    }
+                break;
+                case("Europe"):
+                    if($request->Europe=="on")
+                    {
+
+                        $insert=[
+                            'animal_id'=>$animal->id,
+                            'continent_id'=>$continent->id,
+                        ];
+                        DB::table('animals_of_continents')->insert($insert);
+                    }
+                break;
+                case("Amériquedunord"):
+                    if($request->Amériquedunord=="on")
+                    {
+
+                        $insert=[
+                            'animal_id'=>$animal->id,
+                            'continent_id'=>$continent->id,
+                        ];
+                        DB::table('animals_of_continents')->insert($insert);
+                    }
+                break;
+                case("Amériquedusud"):
+                    if($request->Amériquedusud=="on")
+                    {
+
+                        $insert=[
+                            'animal_id'=>$animal->id,
+                            'continent_id'=>$continent->id,
+                        ];
+                        DB::table('animals_of_continents')->insert($insert);
+                    }
+                break;
+
+            }
+        }
         Session::put('message','Animal created successfully');
         return redirect()->route('home.animal.index')->with('message','Animal created successfully');
     }
@@ -68,8 +146,17 @@ class AnimalController extends Controller
     {
         $animal=Animal::find($id);
         $family=Family::find($animal->family_id);
-        // dd($family->libelle);
-        return view('Animal.show',compact('animal','family'));
+        $continentids=DB::table('animals_of_continents')->Where('animal_id','=',$animal->id)->get('continent_id');
+        // $continents=Continent::find($continentids);
+        // dd($continentids);
+        $continents=array();
+        foreach($continentids as $continentid)
+        {
+            $continent=Continent::find($continentid->continent_id);
+            array_push($continents,$continent->name);
+        }
+        // dd($continents);
+        return view('Animal.show',compact('animal','family','continents'));
     }
 
     /**

@@ -19,14 +19,14 @@
         @csrf
         <div class="form-group">
             <label for="name">Nom:</label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" name="name" class="form-control @error('name') is-lkuinvalid @enderror">
             @error('name')
             <p>{{ $message }}</p>
             @enderror
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea name="description" class="form-control"></textarea>
+            <textarea name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
             @error('description')
             <p>{{ $message }}</p>
             @enderror
@@ -39,11 +39,16 @@
             </select>
         </div>
         <div class="form-group">
-            <select class="form-control" name="continent">
+            <!-- <select class="form-control" name="continent">
                 @foreach($continents as $continent)
                 <option value="{{ $continent->id }}">{{ $continent->name }}</option>
                 @endforeach
-            </select>
+            </select> -->
+            @foreach($continents as $continent)
+            <div>
+                <input type="checkbox" name="{{ $continent->name }}">{{ $continent->name }}
+            </div>
+            @endforeach
         </div>
         <div class="form-group">
             <label for="image">Image:</label>

@@ -52,14 +52,14 @@
             @endforeach
             </select>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label>Continent:</label>
             <select name="continent" class="form-control">
             @foreach($continents as $continent)
             <option>{{ $continent->name }}</option>
             @endforeach
             </select>
-        </div>
+        </div> -->
         <div class="form-group">
             <input type="submit" class="btn btn-success form-control" value="UPDATE">
         </div>
