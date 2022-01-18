@@ -17,7 +17,7 @@
     </nav>
     <div style="width:70%;">
         <div>
-            <a href="{{ route('home.animal.create') }}" class="btn btn-primary">Create Animal<i class="fas fa-plus"></i>:</a>
+            <a href="{{ route('home.animal.create') }}" class="btn btn-primary">Create Animal <i class="fas fa-plus"></i></a>
         </div>
         <div>
             <table class="table table-striped table-bordered">
@@ -61,14 +61,16 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $animals->links() }}   
         </div>
-    @if(Session::has('message'))
-    <p>{{Session::get('message')}}</p>
-    @endif
-    @if(Session::has('update'))
-    <p>{{Session::get('update')}}</p>
-    @endif
-</div></div>
+            @if(Session::has('message'))
+            <p class="info">{{Session::get('message')}}</p>
+            @endif
+            @if(Session::has('update'))
+            <p class="info">{{Session::get('update')}}</p>
+            @endif
+        </div>
+</div>
 <script>
     // alert('hello');
     let input=document.querySelectorAll('.delete');

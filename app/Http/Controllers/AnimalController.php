@@ -9,6 +9,7 @@ use App\Continent;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class AnimalController extends Controller
 {
@@ -19,7 +20,7 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        $animals=Animal::all()->paginate(5);
+        $animals=Animal::paginate(5);
         return view('Animal.index',compact('animals'));
     }
 
