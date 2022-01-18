@@ -15,7 +15,7 @@
                         </li>
                     </ul>
                 </nav>
-                <div>
+                <div class="div-show">
                     <div>
                         <h3>Nom de l'animal:</h3>
                         <p>{{$animal->name}}</p>

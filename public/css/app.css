@@ -10974,5 +10974,46 @@ a.text-dark:focus {
 }
 .fa-plus
 {
-  
+  font-size:1.5rem;
+  /* padding-top:3px; */
+}
+.btn-create-animal
+{
+  margin-bottom:10px;
+}
+#form
+{
+  display:inline;
+}
+.td-actions,.th-actions
+{
+  display:flex;
+  justify-content:space-around;
+}
+ul
+{
+  list-style:none;
+}
+.nav-dashboard a
+{
+   display:flex;
+   width:100px;
+   height:50px;
+   background-color:gray;
+   color:white;
+   justify-content:center;
+   align-items:center;
+}
+.nav-dashboard a:hover
+{
+  text-decoration:none;
+  background-color:black;
+}
+.div-show
+{
+  /* width:70%;
+  display:flex;
+  flex-direction:column;
+  align-items:center; */
+  /* justify-content:center; */
 }

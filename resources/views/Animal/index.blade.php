@@ -17,7 +17,7 @@
     </nav>
     <div style="width:70%;">
         <div>
-            <a href="{{ route('home.animal.create') }}" class="btn btn-primary">Create Animal <i class="fas fa-plus"></i></a>
+            <a href="{{ route('home.animal.create') }}" class="btn btn-primary btn-create-animal">Create Animal <i class="fas fa-plus"></i></a>
         </div>
         <div>
             <table class="table table-striped table-bordered">
@@ -26,7 +26,7 @@
                     <th>Nom:</th>
                     <th>Description:</th>
                     <th>Image:</th>
-                    <th>Actions:</th>
+                    <th class="th-actions">Actions:</th>
                 </thead>
                 <tbody>
                     @foreach($animals as $animal)
@@ -37,7 +37,7 @@
                         <td>
                             <img width="60" height="60" src="{{ Storage::url($animal->image) }}" alt="">
                         </td>
-                        <td>
+                        <td class="td-actions">
                             <a href="{{ route('home.animal.edit',$animal->id) }}" class="btn btn-warning">Edit</a>
                             <a href="{{ route('home.animal.show',$animal->id) }}" class="btn btn-success">Show</a>
                             
